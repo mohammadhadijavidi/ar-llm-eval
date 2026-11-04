@@ -1,0 +1,63 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><style>
+@font-face{font-family:NS;font-weight:400;src:url(../src/ar_llm_eval/web/fonts/noto-sans-arabic-arabic-400-normal.woff2)}
+@font-face{font-family:NS;font-weight:700;src:url(../src/ar_llm_eval/web/fonts/noto-sans-arabic-arabic-700-normal.woff2)}
+@font-face{font-family:NSL;font-weight:400;src:url(../src/ar_llm_eval/web/fonts/noto-sans-arabic-latin-400-normal.woff2)}
+@font-face{font-family:NSL;font-weight:700;src:url(../src/ar_llm_eval/web/fonts/noto-sans-arabic-latin-700-normal.woff2)}
+body{margin:0;background:#0b0f14;color:#e8edf3;font-family:NSL,NS,sans-serif;width:1600px;height:900px;overflow:hidden}
+.wrap{padding:44px 56px}
+h1{margin:0;font-size:34px}h1 span{color:#2fbf9f;font-family:monospace;font-size:18px;display:block;direction:ltr;text-align:right;font-weight:400}
+.sub{color:#8a97a8;margin:6px 0 30px;font-size:17px}
+.row{display:flex;gap:0;align-items:stretch}
+.box{background:#121821;border:1px solid #232d3a;border-radius:14px;padding:18px 20px;flex:1}
+.box h3{margin:0 0 4px;font-size:21px}.box .en{font-family:monospace;color:#5f6d7f;font-size:13px;direction:ltr;text-align:right;display:block;margin-bottom:10px}
+.box ul{margin:0;padding:0 18px 0 0;color:#c7d0db;font-size:15px;line-height:1.75}
+code{font-family:monospace;font-size:13px;background:#1f2834;padding:1px 6px;border-radius:4px;color:#d9b25f;direction:ltr;unicode-bidi:isolate}
+.arrow{width:46px;display:flex;align-items:center;justify-content:center;color:#2fbf9f;font-size:30px}
+.accent{border-color:#1f6f5d}.gold{border-color:#6b5520}
+.bottom{margin-top:26px;display:flex;gap:18px}
+.note{flex:1;background:#2a1f0e;border:1px solid #5a4116;border-radius:12px;padding:14px 18px;color:#f3d29a;font-size:15px}
+.note b{color:#e0a03a}
+.note2{flex:1;background:#101c1a;border:1px solid #1f4f45;border-radius:12px;padding:14px 18px;color:#bfe9dc;font-size:15px}
+.ex{margin-top:26px;display:flex;gap:18px}
+.card{flex:1;background:#121821;border:1px solid #232d3a;border-radius:14px;padding:16px 20px}
+.card .k{color:#8a97a8;font-size:13px;font-family:monospace;direction:ltr;text-align:right;display:block}
+.card .t{font-size:15px;color:#8a97a8;margin:6px 0 2px}
+.card .a{font-family:NS,serif;font-size:24px;margin:2px 0 8px;color:#e8edf3}
+.card .a mark{background:#5a2620;color:#ffb4a8;border-radius:4px;padding:0 3px}
+.res{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #232d3a;padding-top:8px;font-size:14px;color:#c7d0db}
+.sc{font-weight:700;font-size:20px;color:#2fbf9f}.sc.lo{color:#e06a5a}
+.lbl{color:#d9b25f;font-size:12px;font-family:monospace;margin-inline-start:6px}
+</style></head><body><div class="wrap">
+<h1><span>ar-llm-eval · how it works</span>كيف يعمل المعيار</h1>
+<p class="sub">من مهام مكتوبة يدوياً إلى لوحة نتائج: كل خطوة حتمية وقابلة لإعادة الإنتاج، ما عدا استدعاء النموذج نفسه.</p>
+<div class="row">
+<div class="box"><h3>١. المهام</h3><span class="en">tasks/*.yaml</span><ul>
+<li>٧٣ بنداً بذرياً مكتوباً يدوياً</li><li>فصحى + لهجة خليجية/إماراتية</li><li>تشكيل، صرف، إملاء، سياق إماراتي</li><li>لكل بند إجابة مرجعية</li></ul></div>
+<div class="arrow">◀</div>
+<div class="box accent"><h3>٢. طبقة المزوّدين</h3><span class="en">providers.py</span><ul>
+<li><code>openai</code> <code>openrouter</code> <code>groq</code></li><li><code>ollama</code> <code>lmstudio</code> (محلي)</li><li><code>anthropic</code></li><li><code>mock</code>: نماذج محاكاة للعرض فقط</li></ul></div>
+<div class="arrow">◀</div>
+<div class="box"><h3>٣. المصحّحات</h3><span class="en">checks.py · normalize.py</span><ul>
+<li>نسبة خطأ التشكيل <code>DER</code></li><li>الجذر، المطابقة، الأرقام، JSON</li><li>مؤشرات اللهجة مقابل الفصحى</li><li>توحيد الهمزات والتطويل والأرقام</li></ul></div>
+<div class="arrow">◀</div>
+<div class="box gold"><h3>٤. النتائج واللوحة</h3><span class="en">results/*.json → leaderboard.html</span><ul>
+<li>متوسط الفئات بأوزان متساوية</li><li>تقسيم فصحى / خليجي</li><li>بصمة نسخة المهام</li><li>وسم DEMO لكل نتيجة محاكاة</li></ul></div>
+</div>
+<div class="bottom">
+<div class="note2"><b>اختبار ذاتي:</b> الأمر <code>ar-llm-eval validate</code> يمرّر كل إجابة مرجعية على مصحّحاتها، ويفشل إن لم تحصل على ١٠٠.</div>
+<div class="note"><b>الأمانة:</b> لا ننشر درجات لم نقِسها. نتائج <code>mock</code> تظهر دائماً بوسم DEMO ولا تمثّل أي نموذج حقيقي.</div>
+</div><div class="ex">
+<div class="card"><span class="k">dia-001 · diacritics</span>
+<div class="t">إجابة نموذجية مكتوبة يدوياً للتوضيح<span class="lbl">sample answer</span></div>
+<div class="a">ذَهَبَ الوَلَ<mark>دِ</mark> إِلَى المَدْرَسَةِ صَبَاحًا</div>
+<div class="res"><span>DER ٦٫٧٪ (حرف واحد من ١٥) · المتوقع: دُ</span><span class="sc">٨٣٫٣</span></div></div>
+<div class="card"><span class="k">dlw-003 · dialect</span>
+<div class="t">المطلوب بالإماراتية، والإجابة بالفصحى<span class="lbl">sample answer</span></div>
+<div class="a">أريد أن أذهب إلى البيت الآن لأنني متعب</div>
+<div class="res"><span>مؤشرات خليجية ٠ · كلمات فصحى: أريد، الآن</span><span class="sc lo">٢٠٫٠</span></div></div>
+<div class="card"><span class="k">dlw-003 · dialect</span>
+<div class="t">نفس المهمة، إجابة باللهجة الإماراتية<span class="lbl">sample answer</span></div>
+<div class="a">أبا أروح البيت الحين لأني تعبان وايد</div>
+<div class="res"><span>مؤشرات خليجية ٣: الحين، وايد، أبا</span><span class="sc">١٠٠</span></div></div>
+</div>
+</div></body></html>

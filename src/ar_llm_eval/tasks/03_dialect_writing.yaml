@@ -1,0 +1,54 @@
+category: dialect_writing
+title_ar: الكتابة باللهجة الخليجية
+title_en: Gulf writing
+description: >
+  Can the model answer *in* Gulf / Emirati Arabic instead of falling back to
+  MSA? Graded with a high-precision marker heuristic (Gulf words present,
+  MSA-only words absent) plus content keywords. This is a surface check, not
+  a fluency score. Hand-written seed items.
+dialect: gulf
+items:
+  - id: dlw-001
+    prompt: "اكتب رداً قصيراً باللهجة الإماراتية على عميل سأل: «متى يوصل طلبي؟»، وأخبره أن الطلب سيصل غداً في المساء."
+    reference: "حياك الله، طلبك بيوصلك باچر المسا إن شاء الله، ولو تبا أي شي خبرني."
+    checks:
+      - {type: dialect, min_markers: 2, max_msa: 0}
+      - {type: keywords, whole_word: false, groups: [[باچر, باكر, بكرة, بكره, غدا]], weight: 0.5}
+      - {type: script, min_ar: 0.9, weight: 0.5}
+
+  - id: dlw-002
+    prompt: "اكتب جملتين باللهجة الخليجية تعتذر فيهما لصديقك لأنك تأخرت عن موعد القهوة."
+    reference: "السموحة يا خوي، تأخرت عليك وايد. الزحمة الحين صعبة، بس بوصل بعد شوي."
+    checks:
+      - {type: dialect, min_markers: 2, max_msa: 0}
+      - {type: keywords, whole_word: false, groups: [[آسف, اسف, السموحة, سامحني, المعذرة, اعذرني, معذرة, السموح, سموحة]], weight: 0.5}
+      - {type: word_count, min: 6, max: 60, weight: 0.5}
+
+  - id: dlw-003
+    prompt: "حوّل الجملة إلى اللهجة الإماراتية واكتبها فقط: «أريد أن أذهب الآن إلى البيت لأنني متعب كثيراً»"
+    reference: "أبا أروح البيت الحين لأني تعبان وايد."
+    checks:
+      - {type: dialect, min_markers: 2, max_msa: 0}
+      - {type: not_contains, values: [أريد, الآن, كثيراً, لأنني]}
+      - {type: keywords, whole_word: false, groups: [[بيت]], weight: 0.5}
+
+  - id: dlw-004
+    prompt: "اكتب رسالة واتساب قصيرة باللهجة الإماراتية تدعو فيها أصدقاءك إلى غداء يوم الجمعة في البيت."
+    reference: "شباب حياكم الله، عندنا غدا يوم الجمعة في البيت، لا حد يتأخر، نبا نشوفكم كلكم!"
+    checks:
+      - {type: dialect, min_markers: 2, max_msa: 0}
+      - {type: keywords, whole_word: false, groups: [[الجمعة, جمعة], [غدا, غداء, عزومة, عزيمة]], weight: 0.5}
+
+  - id: dlw-005
+    prompt: "عميل كتب: «شو مواعيد الدوام عندكم؟». رد عليه باللهجة الخليجية بأن الدوام من 9 الصبح إلى 6 المساء، من الاثنين إلى السبت."
+    reference: "هلا فيك، دوامنا من ٩ الصبح لين ٦ المسا، من الاثنين لين السبت، وحياك في أي وقت."
+    checks:
+      - {type: dialect, min_markers: 2, max_msa: 0}
+      - {type: keywords, groups: [["9", "تسع", "التسع"], ["6", "ست", "الست"], [الاثنين, الإثنين], [السبت]]}
+
+  - id: dlw-006
+    prompt: "صديقك سألك باللهجة: «وين نتلاقى اليوم؟». رد عليه باللهجة الإماراتية واقترح مقهى في المارينا بعد صلاة العشاء."
+    reference: "خلنا نتلاقى في الكوفي اللي في المارينا عقب صلاة العشا، زين؟"
+    checks:
+      - {type: dialect, min_markers: 1, max_msa: 0, extra_markers: [خلنا, عقب, اللي]}
+      - {type: keywords, whole_word: false, groups: [[المارينا, مارينا], [العشا, العشاء]]}

@@ -1,0 +1,74 @@
+category: uae_context
+title_ar: المعرفة الإماراتية
+title_en: UAE context
+description: >
+  Stable, well-documented facts about the UAE (emirates, national day,
+  currency, dates of the union) and everyday local reasoning (VAT at 5%,
+  AED arithmetic, weekend). Items avoid facts that change often. Hand-written
+  seed items; verify facts before relying on them for anything important.
+dialect: msa
+items:
+  - id: uae-001
+    prompt: "كم عدد الإمارات في دولة الإمارات العربية المتحدة؟ أجب برقم."
+    reference: "7"
+    checks: [{type: number, value: 7}]
+
+  - id: uae-002
+    prompt: "في أي يوم وشهر تحتفل الإمارات بعيد الاتحاد (اليوم الوطني)؟"
+    reference: "2 ديسمبر"
+    checks:
+      - {type: keywords, groups: [["2", "الثاني", "ثاني", "٢"], [ديسمبر, "كانون الأول"]]}
+
+  - id: uae-003
+    prompt: "ما عاصمة دولة الإمارات العربية المتحدة؟ اكتب اسم المدينة فقط."
+    reference: "أبوظبي"
+    checks: [{type: exact, values: [أبوظبي, "أبو ظبي"]}]
+
+  - id: uae-004
+    prompt: "أي إمارة انضمت إلى الاتحاد في 10 فبراير 1972 بعد قيامه؟"
+    options: {"أ": "الفجيرة", "ب": "رأس الخيمة", "ج": "عجمان", "د": "أم القيوين"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: uae-005
+    prompt: "ما العملة الرسمية لدولة الإمارات؟"
+    reference: "الدرهم الإماراتي"
+    checks: [{type: keywords, groups: [[درهم, الدرهم]]}]
+
+  - id: uae-006
+    prompt: "سعر منتج قبل الضريبة 240 درهماً. ما السعر بعد إضافة ضريبة القيمة المضافة في الإمارات (5%)؟ أجب بالرقم فقط."
+    reference: "252"
+    checks: [{type: number, value: 252}]
+
+  - id: uae-007
+    prompt: "فاتورة إجماليها 1,050 درهماً شاملة ضريبة القيمة المضافة 5%. كم قيمة الضريبة بالدرهم؟ أجب بالرقم فقط."
+    reference: "50"
+    checks: [{type: number, value: 50}]
+
+  - id: uae-008
+    prompt: "من هو المؤسس وأول رئيس لدولة الإمارات العربية المتحدة؟"
+    reference: "الشيخ زايد بن سلطان آل نهيان"
+    checks: [{type: keywords, groups: [[زايد], [سلطان, "آل نهيان", "ال نهيان"]]}]
+
+  - id: uae-009
+    prompt: "منذ يناير 2022، ما هي عطلة نهاية الأسبوع الرسمية للجهات الحكومية الاتحادية في الإمارات؟"
+    options: {"أ": "الخميس والجمعة", "ب": "الجمعة والسبت", "ج": "السبت والأحد", "د": "الجمعة فقط"}
+    reference: "ج"
+    checks: [{type: choice, answer: "ج"}]
+    note: "Federal government moved to a Saturday-Sunday weekend (Friday half day) on 1 Jan 2022."
+
+  - id: uae-010
+    prompt: "أي من هذه الإمارات تقع بالكامل تقريباً على ساحل خليج عُمان وليس على الخليج العربي؟"
+    options: {"أ": "الفجيرة", "ب": "دبي", "ج": "عجمان", "د": "أم القيوين"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+
+  - id: uae-011
+    prompt: "في رمضان، موعد الإفطار في دبي اليوم 6:12 مساءً والساعة الآن 5:47 مساءً. كم دقيقة بقيت على الإفطار؟ أجب بالرقم فقط."
+    reference: "25"
+    checks: [{type: number, value: 25}]
+
+  - id: uae-012
+    prompt: "ما معنى الكلمة الإماراتية «الفريج» في سياق الأحياء القديمة مثل «فريج البستكية» في دبي؟"
+    reference: "الحي السكني"
+    checks: [{type: keywords, groups: [[حي, الحي, حارة, منطقة سكنية, الحارة]]}]

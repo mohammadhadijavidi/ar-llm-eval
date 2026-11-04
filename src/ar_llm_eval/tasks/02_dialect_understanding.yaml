@@ -1,0 +1,108 @@
+category: dialect_understanding
+title_ar: فهم اللهجة الخليجية
+title_en: Gulf comprehension
+description: >
+  Comprehension of everyday Gulf / Emirati Arabic: common words (وايد، باچر،
+  مب، هيه)، the Emirati ج→ي shift (ريال، يالس، ميلس)، and Gulf-to-MSA
+  rewriting. Hand-written seed items; the sentences are typical everyday
+  phrasing, not quotes from real people.
+dialect: gulf
+items:
+  - id: dlu-001
+    prompt: "ما معنى كلمة «وايد» في الجملة الإماراتية: «الجو اليوم حار وايد»؟"
+    options: {"أ": "قليلاً", "ب": "كثيراً / جداً", "ج": "أحياناً", "د": "فجأة"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: dlu-002
+    prompt: "قال شخص: «باچر بنسير البر». متى سيذهبون؟"
+    options: {"أ": "اليوم", "ب": "أمس", "ج": "غداً", "د": "الأسبوع القادم"}
+    reference: "ج"
+    checks: [{type: choice, answer: "ج"}]
+
+  - id: dlu-003
+    prompt: "ما معنى التحية الإماراتية «شحالك؟»"
+    options: {"أ": "أين أنت؟", "ب": "كيف حالك؟", "ج": "ماذا تريد؟", "د": "من أنت؟"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: dlu-004
+    prompt: "ما معنى الجملة: «أنا مب فاضي الحين»؟"
+    options: {"أ": "أنا متفرغ الآن", "ب": "أنا غير متفرغ الآن", "ج": "سأتفرغ غداً", "د": "كنت مشغولاً أمس"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: dlu-005
+    prompt: "قالت الأم لابنها: «سير يب الغدا من المطعم». ماذا طلبت منه؟"
+    options: {"أ": "أن يذهب ويحضر الغداء من المطعم", "ب": "أن يطبخ الغداء", "ج": "أن يأكل في المطعم", "د": "أن يلغي طلب الغداء"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+    note: "Emirati ج→ي shift: يب = جيب (bring); غدا = lunch."
+
+  - id: dlu-006
+    prompt: "«الريال يالس في الميلس». أين الرجل؟"
+    options: {"أ": "في السوق", "ب": "في المجلس", "ج": "في السيارة", "د": "في المسجد"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+    note: "ريال = رجل، يالس = جالس، ميلس = مجلس (ج→ي)."
+
+  - id: dlu-007
+    prompt: "ما المقصود بالسؤال: «ليش ما ييت أمس؟»"
+    options: {"أ": "لماذا لم تأتِ أمس؟", "ب": "متى ستأتي؟", "ج": "أين كنت اليوم؟", "د": "لماذا جئت مبكراً؟"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+
+  - id: dlu-008
+    prompt: "«خلنا نتلاقى عقب صلاة المغرب». متى سيلتقيان؟"
+    options: {"أ": "قبل صلاة المغرب", "ب": "بعد صلاة المغرب", "ج": "وقت الفجر", "د": "عند الظهر"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: dlu-009
+    prompt: "في جملة «السالفة وايد طويلة»، ما معنى «السالفة»؟"
+    options: {"أ": "القصة أو الموضوع", "ب": "الطريق", "ج": "السيارة", "د": "الوجبة"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+
+  - id: dlu-010
+    prompt: "في اللهجة الإماراتية، ما معنى «هيه»؟"
+    options: {"أ": "لا", "ب": "نعم", "ج": "ربما", "د": "انتبه"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: dlu-011
+    prompt: "ما معنى «عيل ليش ما خبرتني؟»"
+    options: {"أ": "إذن لماذا لم تخبرني؟", "ب": "متى ستخبرني؟", "ج": "من أخبرك؟", "د": "لماذا أخبرتني؟"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+
+  - id: dlu-012
+    prompt: "قال أحدهم: «بيتنا في نفس الفريج». ما معنى «الفريج»؟"
+    options: {"أ": "الحي السكني", "ب": "الثلاجة", "ج": "المزرعة", "د": "الشارع الرئيسي"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+    note: "Distractor ب targets the English loanword 'fridge'."
+
+  - id: dlu-013
+    prompt: "حوّل الجملة الإماراتية التالية إلى العربية الفصحى، واكتب الجملة فقط: «أبا أروح السوق باچر الصبح»"
+    reference: "أريد أن أذهب إلى السوق غداً صباحاً"
+    checks:
+      - type: keywords
+        groups: [[أريد, أود, أرغب], [أذهب, الذهاب], [السوق], [غدا, غداً], [صباحا, صباحاً, الصباح, صباح]]
+      - {type: not_contains, alef: strict, values: [أبا, ابا, أروح, اروح, باچر, باكر, الصبح]}
+
+  - id: dlu-014
+    prompt: "حوّل الجملة الخليجية التالية إلى العربية الفصحى، واكتب الجملة فقط: «شو تبا تاكل الحين؟»"
+    reference: "ماذا تريد أن تأكل الآن؟"
+    checks:
+      - type: keywords
+        groups: [[ماذا, "ما الذي"], [تريد, تود, ترغب], [تأكل, الأكل], [الآن]]
+      - {type: not_contains, alef: strict, values: [شو, تبا, الحين, تاكل]}
+
+  - id: dlu-015
+    prompt: "حوّل الجملة الإماراتية التالية إلى العربية الفصحى، واكتب الجملة فقط: «الريال يالس في الميلس ويشرب قهوة»"
+    reference: "الرجل جالس في المجلس ويشرب قهوة"
+    checks:
+      - type: keywords
+        groups: [[الرجل, رجل], [جالس, يجلس], [المجلس], [يشرب], [قهوة, القهوة]]
+      - {type: not_contains, values: [الريال, يالس, الميلس]}

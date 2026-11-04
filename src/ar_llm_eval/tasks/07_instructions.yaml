@@ -1,0 +1,62 @@
+category: instructions
+title_ar: اتباع التعليمات
+title_en: Instructions
+description: >
+  Format and constraint following with Arabic content: answer only in Arabic,
+  use Arabic-Indic digits, stay within a word limit, return JSON with Arabic
+  values, keep a fixed register. Fully deterministic graders. Hand-written
+  seed items.
+dialect: msa
+items:
+  - id: ins-001
+    prompt: "اكتب جملة واحدة فقط عن أهمية القراءة، بالعربية، دون استخدام أي حرف لاتيني، وفي أقل من 15 كلمة."
+    reference: "القراءة غذاء العقل وتفتح للإنسان أبواب المعرفة."
+    checks:
+      - {type: script, min_ar: 1.0}
+      - {type: word_count, min: 3, max: 14}
+      - {type: regex, pattern: "\\n\\s*\\S", negate: true, weight: 0.5}
+
+  - id: ins-002
+    prompt: "اكتب الرقم «ألف ومئتان وخمسون» بالأرقام العربية المشرقية (٠١٢٣٤٥٦٧٨٩) فقط، دون أي كلمات."
+    reference: "١٢٥٠"
+    checks:
+      - {type: regex, pattern: "^\\s*[١٢٣٤٥٦٧٨٩٠٬,]+\\s*$"}
+      - {type: number, value: 1250}
+
+  - id: ins-003
+    prompt: >-
+      استخرج المعلومات من النص وأعدها بصيغة JSON فقط بالمفاتيح name و city و phone_count:
+      «تواصلت معنا سارة من الشارقة، وأرسلت رقمين للتواصل.»
+    reference: '{"name": "سارة", "city": "الشارقة", "phone_count": 2}'
+    checks:
+      - type: json
+        keys: [name, city, phone_count]
+        expect: {name: [سارة], city: [الشارقة, شارقة], phone_count: ["2"]}
+
+  - id: ins-004
+    prompt: "اذكر ثلاث فوائد للتمر في قائمة مرقمة، كل بند في سطر واحد، دون مقدمة أو خاتمة."
+    reference: "1. مصدر سريع للطاقة\n2. غني بالألياف\n3. يحتوي على البوتاسيوم والمعادن"
+    checks:
+      - {type: regex, pattern: "^\\s*(?:1|١)[.)\\-]\\s*\\S.*\\n\\s*(?:2|٢)[.)\\-]\\s*\\S.*\\n\\s*(?:3|٣)[.)\\-]\\s*\\S[^\\n]*\\s*$"}
+      - {type: script, min_ar: 0.95, weight: 0.5}
+
+  - id: ins-005
+    prompt: "ترجم إلى الإنجليزية فقط، دون أي كلمة عربية: «مرحباً بكم في دبي»"
+    reference: "Welcome to Dubai"
+    checks:
+      - {type: script, min_en: 1.0}
+      - {type: keywords, groups: [[welcome], [dubai]]}
+
+  - id: ins-006
+    prompt: "أجب بكلمة واحدة فقط: «نعم» أو «لا». هل أبوظبي عاصمة الإمارات؟"
+    reference: "نعم"
+    checks:
+      - {type: exact, values: [نعم]}
+
+  - id: ins-007
+    prompt: "اكتب عنواناً تسويقياً لمطعم بحري في دبي لا يزيد عن 6 كلمات، ولا يحتوي على كلمة «أفضل»."
+    reference: "نكهة البحر على شاطئ دبي"
+    checks:
+      - {type: word_count, min: 2, max: 6}
+      - {type: not_contains, values: [أفضل, الأفضل]}
+      - {type: script, min_ar: 0.9, weight: 0.5}

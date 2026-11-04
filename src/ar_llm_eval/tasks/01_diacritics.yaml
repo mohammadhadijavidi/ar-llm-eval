@@ -1,0 +1,82 @@
+category: diacritics
+title_ar: التشكيل
+title_en: Diacritization
+description: >
+  Full vowelling of short MSA sentences, graded by diacritic error rate (DER)
+  against a hand-vowelled reference, plus questions where the diacritics
+  change the meaning. Sukun is optional; the sentence letters must not change.
+  All items hand-written for ar-llm-eval (seed set, not sampled from a corpus).
+dialect: msa
+items:
+  - id: dia-001
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: ذهب الولد إلى المدرسة صباحاً"
+    reference: "ذَهَبَ الوَلَدُ إِلَى المَدْرَسَةِ صَبَاحًا"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, case-endings]
+
+  - id: dia-002
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: كتب الطالب الدرس في الدفتر"
+    reference: "كَتَبَ الطَّالِبُ الدَّرْسَ فِي الدَّفْتَرِ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, shadda, sun-letters]
+
+  - id: dia-003
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: إن العلم نور"
+    reference: "إِنَّ العِلْمَ نُورٌ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, inna, tanwin]
+
+  - id: dia-004
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: يحب الناس البحر في الشتاء"
+    reference: "يُحِبُّ النَّاسُ البَحْرَ فِي الشِّتَاءِ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, shadda]
+
+  - id: dia-005
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: شرب محمد الماء البارد"
+    reference: "شَرِبَ مُحَمَّدٌ المَاءَ البَارِدَ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, tanwin, adjective-agreement]
+
+  - id: dia-006
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: يسكن أخي في مدينة كبيرة"
+    reference: "يَسْكُنُ أَخِي فِي مَدِينَةٍ كَبِيرَةٍ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, tanwin-kasr]
+
+  - id: dia-007
+    prompt: "شكّل الجملة التالية تشكيلاً كاملاً، وأعدها مشكولة فقط: قرأت الكتاب الجديد أمس"
+    reference: "قَرَأْتُ الكِتَابَ الجَدِيدَ أَمْسِ"
+    checks:
+      - {type: diacritics, max_der: 0.4}
+    tags: [tashkeel, mabni]
+
+  - id: dia-008
+    prompt: "أي كلمة من التالية تعني «كتب» بصيغة الجمع (جمع كتاب)؟"
+    options: {"أ": "كَتَبَ", "ب": "كُتُبٌ", "ج": "كُتِبَ", "د": "كَاتَبَ"}
+    reference: "ب"
+    checks:
+      - {type: choice, answer: "ب"}
+    tags: [meaning-by-diacritics]
+
+  - id: dia-009
+    prompt: "أي تشكيل يجعل الفعل مبنياً للمجهول في جملة «كتب الدرسُ»؟"
+    options: {"أ": "كَتَبَ", "ب": "كُتِبَ", "ج": "كَتَّبَ", "د": "كُتُبُ"}
+    reference: "ب"
+    checks:
+      - {type: choice, answer: "ب"}
+    tags: [meaning-by-diacritics, passive]
+
+  - id: dia-010
+    prompt: "أي كلمة تعني «المرأة التي تُدرِّس»؟"
+    options: {"أ": "مَدْرَسَة", "ب": "مُدَرِّسَة", "ج": "مَدَارِس", "د": "دَرْس"}
+    reference: "ب"
+    checks:
+      - {type: choice, answer: "ب"}
+    tags: [meaning-by-diacritics]

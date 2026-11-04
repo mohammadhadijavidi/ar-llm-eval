@@ -1,0 +1,20 @@
+# Example custom task file (hand-written sample, not part of the seed set).
+# Run:  ar-llm-eval run --model mock:oracle --tasks examples/custom_tasks.yaml
+category: dubai_services
+title_ar: خدمات دبي
+title_en: Dubai services (example)
+items:
+  - id: ex-001
+    dialect: gulf
+    prompt: "عميل كتب: «أبا أجدد رخصة السيارة، شو أسوي؟». ما الذي يطلبه العميل؟"
+    options: {"أ": "تجديد رخصة المركبة", "ب": "شراء سيارة", "ج": "إلغاء مخالفة", "د": "حجز موعد في المستشفى"}
+    reference: "أ"
+    checks:
+      - {type: choice, answer: "أ"}
+
+  - id: ex-002
+    dialect: msa
+    prompt: "استخرج من النص المبلغ بالدرهم فقط كرقم: «تم دفع رسوم بقيمة ٣٨٠ درهماً.»"
+    reference: "380"
+    checks:
+      - {type: number, value: 380}

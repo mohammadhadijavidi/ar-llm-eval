@@ -1,0 +1,90 @@
+category: morphology
+title_ar: الصرف
+title_en: Morphology
+description: >
+  Roots, patterns (أوزان), broken plurals, the dual, gender agreement and
+  verb conjugation. Answers are single words or roots, graded exactly
+  (hamza seats and alef forms folded; taa marbuta kept where it matters).
+  Hand-written seed items.
+dialect: msa
+items:
+  - id: mor-001
+    prompt: "ما جذر كلمة «مكتبة»؟ اكتب الجذر فقط بحروف منفصلة."
+    reference: "ك ت ب"
+    checks: [{type: root, root: كتب}]
+
+  - id: mor-002
+    prompt: "ما جذر كلمة «استخدام»؟ اكتب الجذر فقط بحروف منفصلة."
+    reference: "خ د م"
+    checks: [{type: root, root: خدم}]
+
+  - id: mor-003
+    prompt: "ما جذر كلمة «مستشفى»؟ اكتب الجذر فقط بحروف منفصلة."
+    reference: "ش ف ي"
+    checks: [{type: root, root: [شفي, شفى]}]
+    note: "Defective (naqis) root; final weak letter written ي or ى both accepted."
+
+  - id: mor-004
+    prompt: "ما جذر كلمة «مسؤول»؟ اكتب الجذر فقط بحروف منفصلة."
+    reference: "س أ ل"
+    checks: [{type: root, root: سأل}]
+    note: "Hamza seats are unified by the grader, so س ء ل is also accepted."
+
+  - id: mor-005
+    prompt: "ما جذر كلمة «اتصال»؟ اكتب الجذر فقط بحروف منفصلة."
+    reference: "و ص ل"
+    checks: [{type: root, root: وصل}]
+    note: "Assimilated (mithal) root: the و of وصل becomes ت in the ifti'al pattern."
+
+  - id: mor-006
+    prompt: "ما جمع التكسير لكلمة «مدينة»؟ اكتب الكلمة فقط."
+    reference: "مدن"
+    checks: [{type: exact, values: [مدن, مدائن]}]
+
+  - id: mor-007
+    prompt: "ما جمع كلمة «مفتاح»؟ اكتب الكلمة فقط."
+    reference: "مفاتيح"
+    checks: [{type: exact, values: [مفاتيح]}]
+
+  - id: mor-008
+    prompt: "ما مفرد كلمة «أسواق»؟ اكتب الكلمة فقط."
+    reference: "سوق"
+    checks: [{type: exact, values: [سوق]}]
+
+  - id: mor-009
+    prompt: "ما المثنى المرفوع لكلمة «مهندسة»؟ اكتب الكلمة فقط."
+    reference: "مهندستان"
+    checks: [{type: exact, taa: strict, values: [مهندستان]}]
+
+  - id: mor-010
+    prompt: "صرّف الفعل «كتب» في الماضي مع الضمير «هم». اكتب الفعل فقط."
+    reference: "كتبوا"
+    checks: [{type: exact, values: [كتبوا]}]
+
+  - id: mor-011
+    prompt: "صرّف الفعل «قال» في المضارع مع الضمير «نحن». اكتب الفعل فقط."
+    reference: "نقول"
+    checks: [{type: exact, values: [نقول]}]
+
+  - id: mor-012
+    prompt: "ما اسم الفاعل من الفعل «علّم»؟ اكتب الكلمة فقط."
+    reference: "معلم"
+    checks: [{type: exact, values: [معلم, مُعلِّم]}]
+
+  - id: mor-013
+    prompt: "على أي وزن تأتي كلمة «استغفار»؟"
+    options: {"أ": "افتعال", "ب": "استفعال", "ج": "انفعال", "د": "تفعيل"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: mor-014
+    prompt: "اختر الصفة الصحيحة: «رأيتُ سياراتٍ ____»"
+    options: {"أ": "جديد", "ب": "جديدةً", "ج": "جديدةٍ", "د": "جديدان"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+    note: "Non-human plural takes feminine singular agreement. The noun سياراتٍ shows the accusative with kasra (sound feminine plural), but the singular adjective takes fatha: جديدةً. Distractor ج copies the noun's kasra."
+
+  - id: mor-015
+    prompt: "ما مؤنث كلمة «أحمر»؟ اكتب الكلمة فقط."
+    reference: "حمراء"
+    checks: [{type: exact, values: [حمراء]}]

@@ -1,0 +1,58 @@
+category: orthography
+title_ar: الإملاء
+title_en: Orthography
+description: >
+  Spelling rules that real Arabic text gets wrong: hamza seats, taa marbuta
+  vs. haa, alef maqsura vs. yaa, alef wasla/qat'. Graders keep the letters
+  strict here (no alef/yaa/taa folding). Hand-written seed items.
+dialect: msa
+items:
+  - id: ort-001
+    prompt: "أي كلمة مكتوبة بشكل صحيح؟"
+    options: {"أ": "مسئلة", "ب": "مسألة", "ج": "مساله", "د": "مسأله"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: ort-002
+    prompt: "أي كلمة مكتوبة بشكل صحيح؟"
+    options: {"أ": "شؤون", "ب": "شئون", "ج": "شأون", "د": "شوون"}
+    reference: "أ"
+    checks: [{type: choice, answer: "أ"}]
+    note: "شؤون is the standard modern spelling (شئون is an older variant still seen in Egypt); the options make أ the single best answer."
+
+  - id: ort-003
+    prompt: "أي كلمة مكتوبة بشكل صحيح؟"
+    options: {"أ": "مستشفي", "ب": "مستشفى", "ج": "مستشفا", "د": "مستشفه"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: ort-004
+    prompt: "صحّح الأخطاء الإملائية في الجملة وأعدها كاملة فقط: «ذهبت الي المدرسه و قرات الكتاب»"
+    reference: "ذهبت إلى المدرسة وقرأت الكتاب"
+    checks:
+      - {type: keywords, alef: strict, yaa: strict, taa: strict, groups: [[إلى], [المدرسة], [قرأت, وقرأت]]}
+      - {type: not_contains, alef: strict, yaa: strict, taa: strict, values: [الي, المدرسه, قرات]}
+
+  - id: ort-005
+    prompt: "صحّح الأخطاء الإملائية وأعد الجملة كاملة فقط: «سالت المعلمه عن مسئوليه الطلاب»"
+    reference: "سألت المعلمة عن مسؤولية الطلاب"
+    checks:
+      - {type: keywords, alef: strict, yaa: strict, taa: strict, groups: [[سألت], [المعلمة], [مسؤولية]]}
+      - {type: not_contains, alef: strict, yaa: strict, taa: strict, values: [سالت, المعلمه, مسئوليه, مسئولية, مسؤوليه]}
+
+  - id: ort-006
+    prompt: "أي كلمة تبدأ بهمزة وصل؟"
+    options: {"أ": "أكرم", "ب": "استخرج", "ج": "أحمد", "د": "أخذ"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
+
+  - id: ort-007
+    prompt: "أضف ضمير الغائب «ـه» إلى كلمة «سماء» لتكمل الجملة: «نظرتُ إلى ___». اكتب الكلمة فقط مع الضمير."
+    reference: "سمائه"
+    checks: [{type: exact, alef: strict, yaa: strict, values: [سمائه]}]
+
+  - id: ort-008
+    prompt: "أي كلمة مكتوبة بشكل صحيح؟"
+    options: {"أ": "إقتصاد", "ب": "اقتصاد", "ج": "أقتصاد", "د": "آقتصاد"}
+    reference: "ب"
+    checks: [{type: choice, answer: "ب"}]
